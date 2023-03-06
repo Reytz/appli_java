@@ -74,28 +74,13 @@ public class MonApplication extends JFrame {
 
                 try {
                     conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/clients", "alex", "alex");
-                } catch (SQLException ex) {
-                    label.setText("Erreur de connexion à la base de données 1");
-                }
-
-                try {
                     stmt = conn.createStatement();
-                } catch (SQLException ex) {
-                    label.setText("Erreur de connexion à la base de données 2");
-                }
-
-                try {
                     rs = stmt.executeQuery("SELECT COUNT(*) FROM contrats");
-                } catch (SQLException ex) {
-                    label.setText("Erreur de connexion à la base de données 3");
-                }
-
-                try {
                     if (rs.next()) {
                         label.setText("Nombre de lignes dans la table : " + rs.getInt(1));
                     }
                 } catch (SQLException ex) {
-                    label.setText("Erreur de connexion à la base de données 4");
+                    label.setText("Erreur de connexion à la base de données");
                 }
                 finally {
                     try {
